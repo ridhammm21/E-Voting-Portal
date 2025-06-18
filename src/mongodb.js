@@ -82,7 +82,7 @@ const mongoose = require("mongoose");
 // Connect to MongoDB Atlas
 async function main() {
     try {
-        await mongoose.connect("mongodb+srv://f619ridhamjasani:dYEa5Tfdg8Q9U52q@cluster0.tnfwwwa.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0");
+        await mongoose.connect("");
         console.log('Connected to MongoDB Atlas');
     } catch (error) {
         console.error('Error connecting to MongoDB Atlas:', error);
