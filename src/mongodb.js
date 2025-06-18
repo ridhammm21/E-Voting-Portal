@@ -1,7 +1,7 @@
 // const mongoose = require("mongoose");
 // main().catch(err=> console.log(err));
 // async function main(){
-// await mongoose.connect("mongodb+srv://vrdeshmukh103:42kGls4W7k0bRgse@cluster0.rrazacp.mongodb.net/?retryWrites=true&w=majority").then(()=> console.log('connected to atlas')) .catch(err=>{
+// await mongoose.connect("").then(()=> console.log('connected to atlas')) .catch(err=>{
 //     console.log(err);
 // })}
 
