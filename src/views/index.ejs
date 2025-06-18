@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login / Signup</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+
+</head>
+<body>
+    <div class="form-container sign-in-form">
+        <div class="form-box sign-in-box">
+            <h2>Login</h2>
+            
+            <form action="/login" method="post">
+                <div class="field">
+                    <i class="uil uil-at"></i>
+                    <input type="email" name="lemail" placeholder="Email ID" required>
+                </div>
+                <div class="field">
+                    <i class="uil uil-lock"></i>
+                    <input class="password-input" name="lpassword" type="password" placeholder="Password" required>
+                    <div class="eye-btn"><i class="uil uil-eye-slash"></i></div>
+                </div>
+                <div class="forget-link">
+                    <a href="">Forgot Password?</a>
+                </div>
+                <% if (locals.message) { %>
+                    <p style="color: red; font-size: 10px;"><%= locals.message %></p>
+                <% } %>
+                <input class="submit-btn" type="submit" value="Login" onclick="validateInputs">
+            </form>
+            <div class="login-options">
+                <p class="text">Or, Login with...</p>
+                <div class="other-logins">
+                    <a href=""><img src="img/google.png" alt=""></a>
+                    <a href=""><img src="img/apple.png" alt=""></a>
+                    <a href=""><img src="img/facebook.png" alt=""></a>
+                </div>
+            </div>
+        </div>
+        <div class="img-box sign-in-imgBox">
+            <div class="sliding-link">
+                <p>Don't have an account?</p>
+                <span class="sign-up-btn">Sign up</span>
+            </div>
+            <img src="img/signup.jpg" alt="">
+        </div>
+    </div>
+
+    <div class="form-container sign-up-form">
+        <div class="img-box sign-up-imgBox">
+            <div class="sliding-link">
+                <p>Already a member?</p>
+                <span class="sign-in-btn">Sign in</span>
+            </div>
+            <img src="img/login.jpg" alt="">
+        </div>
+        <div class="form-box sign-up-box">
+            <h2>Signup</h2>
+            <div class="login-options">          
+                <div class="other-logins">
+                    <a href=""><img src="img/google.png" alt=""></a>
+                    <a href=""><img src="img/apple.png" alt=""></a>
+                    <a href=""><img src="img/facebook.png" alt=""></a>
+                </div>
+                <p class="text">Or, Sign up with email...</p>
+            </div>
+            <form action="/signup" method="post">
+                <div class="field">
+                    <i class="uil uil-at"></i>
+                    <input type="email" name="semail" placeholder="Email ID" id="email" required>
+                </div>
+                <div class="field">
+                    <i class="uil uil-user"></i>
+                    <input type="text" name="name" placeholder="Full name" id="username" required>
+                </div>
+                <div class="field">
+                    <i class="uil uil-lock"></i>
+                    <input class="password" name="spassword" type="password" placeholder="Password" id="password" required>
+                </div>
+                <div class="field">
+                    <i class="uil uil-lock-access"></i>
+                    <input class="password" name="cpassword" type="password" placeholder="Confirm Password" id="password2" required>
+                </div>
+                <input class="submit-btn" type="submit" value="Sign up" onclick="validatInputs">
+            </form>
+            
+        </div>
+        
+    </div>
+
+    <script src="/script.js"></script>
+
+    <script>
+        function validateInputs() {
+            const mail = document.getElementsByName("lemail")[0].value;
+            const pass = document.getElementsByName("lpassword")[0].value;
+
+            if(!mail || !pass){
+                alert("Please enter both email and password.");
+                return false;
+            }
+            return true;
+        }
+        document.getElementById("loginForm").onsubmit = function() {
+            document.getElementById("wrong-password-msg").style.display="block"
+            if (!validateInputs()) {
+                // Validation failed, prevent form submission
+                return false;
+            }
+            return validateInputs();
+        };
+    </script>
+</body>
+</html>

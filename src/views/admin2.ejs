@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>E-Voting Portal</title>
+    <!-- Swiper CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/swiper@10.3.1/swiper-bundle.min.css"
+      rel="stylesheet"
+    />
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/admin.css" />
+    <link rel="popperjs" href="https://unpkg.com/@popperjs/core@2" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <style>
+      .custom-navbar-nav {
+        position: relative;
+        margin-right: 0;
+        margin-left: auto;
+      }
+      .custom-navbar-nav li a {
+        position: relative;
+        color: #4070f4;
+        font-size: 1rem;
+        font-weight: 500;
+        text-decoration: none;
+        margin-left: 30px;
+        transition: 0.3s ease;
+        cursor: pointer;
+      }
+      .custom-navbar-nav li a:before {
+        content: "";
+        position: absolute;
+        background: #4070f4;
+        width: 0;
+        height: 2.5px;
+        bottom: 0;
+        left: 0;
+        transition: 0.5s ease;
+      }
+
+      .custom-navbar-nav li a:hover:before {
+        width: 100%;
+      }
+
+      @media (max-width: 1110px) {
+        .navbar {
+          background-color: #343a40; /* Change background color to dark */
+        }
+      }
+      @media (min-width: 1200px) {
+        .navbar-toggler {
+          position: absolute;
+          right: 15px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="menu-btn"></div>
+        <a
+          class="navbar-brand mr-10"
+          href="#"
+          style="
+            font-size: 24px;
+            margin-left: 50px;
+            font-weight: bolder;
+            color: #4070f4;
+          "
+          >E-voting</a
+        >
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarCollapse"
+          aria-controls="navbarCollapse"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav mr-auto custom-navbar-nav">
+            <li class="nav-item mt-2">
+              <a
+                class="nav-link"
+                href="/indexx#homelink"
+                style="font-size: 18px; color: #4070f4"
+                >Home</a
+              >
+            </li>
+            <li class="nav-item mt-2">
+              <a
+                class="nav-link"
+                href="/indexx#aboutlink"
+                style="font-size: 18px; color: #4070f4"
+                >About</a
+              >
+            </li>
+            <li class="nav-item mt-2">
+              <a
+                class="nav-link"
+                href="/portal"
+                style="font-size: 18px; color: #4070f4"
+                >Portal</a
+              >
+            </li>
+            <li class="nav-item mt-2">
+              <a
+                class="nav-link"
+                href="/indexx#contactlink"
+                style="font-size: 18px; color: #4070f4"
+                >Contact us</a
+              >
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <section class="admin" id="admin">
+      <h1>ADMIN</h1>
+      <div class="admin-container">
+        <div class="add-candidate">
+          <button onclick="toggleCandidate()">
+            <h2>ADD CANDIDATES</h2>
+          </button>
+        </div>
+        <div class="add-election">
+          <button onclick="toggleElection()">
+            <h2>ADD ELECTIONS</h2>
+          </button>
+        </div>
+      </div>
+    </section>
+    <section class="pop-up">
+      <div class="candidate-form" id="candidate-form">
+        <div class="wrapper">
+          <button onclick="closeCandidate()" class="icon-close">
+            <img src="img2/close.png" alt="" />
+          </button>
+          <div class="form-box can">
+            <h1>Candidate Form</h1>
+            <form action="/Candidate" method="post">
+              <div class="input-box">
+                <span class="icon"></span>
+                <input type="name" name="name" required />
+                <label>Name</label>
+              </div>
+              <div class="input-box">
+                <span class="icon"></span>
+                <input type="email" name="email" required />
+                <label>Email</label>
+              </div>
+              <div class="input-box">
+                <span class="icon"></span>
+                <input type="text" name="department" required />
+                <label>Department</label>
+              </div>
+              <div class="input-box">
+                <span class="icon"></span>
+                <input type="number" name="year" required />
+                <label>Year</label>
+              </div>
+              <div class="input-box">
+                <span class="icon"></span>
+                <input type="number" name="roll_no" required />
+                <label>Roll No.</label>
+              </div>
+              <div class="input-box">
+                <span class="icon"></span>
+                <button
+                  name="election_type"
+                  class="dropdown-toggle btn btn-info"
+                  id="dropdown_menu"
+                  data-toggle="dropdown"
+                  name="election_type"
+                  required
+                >
+                  Select Election Type
+                </button>
+
+                <ul
+                  class="dropdown-menu"
+                  role="menu"
+                  aria-labelledby="dropdown_menu"
+                >
+                  <% elections.forEach(election => { %>
+                  <li role="presentation">
+                    <a
+                      class="dropdown-item"
+                      href="#"
+                      role="menuitem"
+                      id="election"
+                      onclick="updateInput('<%= election.name %>')"
+                      ><%= election.name %></a
+                    >
+                  </li>
+                  <% }); %>
+                  <!-- <li role="presentation">
+                    <a href="#" role="menuitem">item</a>
+                  </li>-->
+                </ul>
+                <input
+                  type="hidden"
+                  name="election_type"
+                  id="selected_election"
+                  required
+                />
+              </div>
+              <button class="submit" type="submit">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="election-form" id="election-form">
+        <div class="wrapper">
+          <button onclick="closeElection()" class="icon-close">
+            <img src="img2/close.png" alt="" />
+          </button>
+          <div class="form-box elec">
+            <h1>Election Form</h1>
+            <form action="/Election" method="post">
+              <div class="input-box">
+                <span class="icon"></span>
+                <input type="name" name="name" required />
+                <label>Name</label>
+              </div>
+              <!-- <div class="input-box">
+                            <span class="icon"></span>
+                            <input type="email" required>
+                            <label>Email</label>
+                        </div> -->
+              <div class="input-box">
+                <span class="icon"></span>
+                <input type="text" name="department" required />
+                <label>Department</label>
+              </div>
+              <div class="input-box">
+                <span class="icon"></span>
+                <input type="number" name="year" required />
+                <label>Year</label>
+              </div>
+              <div class="input-box">
+                <span class="icon"></span>
+                <input type="text" name="description" required />
+                <label>Description</label>
+              </div>
+              <button class="submit" type="submit">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h1 class="candidates" id="candidates">CANDIDATES</h1>
+      <div class="slide-container swiper">
+        <div class="slide-content">
+          <div class="card-wrapper swiper-wrapper">
+          <% candidates.forEach(candidate => { %>
+            <div class="card swiper-slide">
+              <div class="image-content">
+                <span class="overlay"></span>
+
+                <div class="card-image">
+                  <!-- <img src="<%= candidate.image %>" alt="" class="card-img" /> -->
+                  <img src="img/2.webp" alt="" class="card-img" />
+                </div>
+              </div>
+
+              <div class="card-content">
+                <h2 class="name"><%= candidate.name %></h2>
+                <!-- Display election description -->
+                <p class="description"><%= candidate.description %></p>
+
+                <button class="button">Vote Count</button>
+              </div>
+            </div>
+            <% }); %>
+          </div>
+        </div>
+
+        <div class="swiper-button-next swiper-navBtn"></div>
+        <div class="swiper-button-prev swiper-navBtn"></div>
+        <div class="swiper-pagination"></div>
+      </div>
+    </section>
+
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10.3.1/swiper-bundle.min.js"></script>
+
+    <!-- JavaScript -->
+    <script>
+      var swiper = new Swiper(".slide-content", {
+        slidesPerView: 3,
+        spaceBetween: 25,
+        loop: true,
+        centerSlide: "true",
+        fade: "true",
+        grabCursor: "true",
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+          dynamicBullets: true,
+        },
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+
+        breakpoints: {
+          0: {
+            slidesPerView: 1,
+          },
+          520: {
+            slidesPerView: 2,
+          },
+          950: {
+            slidesPerView: 3,
+          },
+        },
+      });
+    </script>
+    <script>
+      var candidate = document.getElementById("candidate-form");
+      var election = document.getElementById("election-form");
+      var admin = document.getElementById("admin");
+      var elections = document.getElementById("elections");
+      var close = document.querySelector("icon-close");
+
+      function toggleCandidate() {
+        admin.classList.add("active");
+        elections.classList.add("active");
+        candidate.classList.add("active-popup1");
+      }
+
+      function toggleElection() {
+        admin.classList.add("active");
+        elections.classList.add("active");
+        election.classList.add("active-popup2");
+      }
+
+      function closeCandidate() {
+        admin.classList.remove("active");
+        elections.classList.remove("active");
+        candidate.classList.remove("active-popup1");
+      }
+
+      function closeElection() {
+        admin.classList.remove("active");
+        elections.classList.remove("active");
+        election.classList.remove("active-popup2");
+      }
+    </script>
+
+    <script type="text/javascript">
+      const menuBtn = document.querySelector(".menu-btn");
+      const navigation = document.querySelector(".custom-navbar-nav");
+      menuBtn.addEventListener("click", () => {
+        menuBtn.classList.toggle("active");
+        navigation.classList.toggle("active");
+      });
+
+      const btns = document.querySelectorAll(".nav-btn");
+      const slides = document.querySelectorAll(".video-slide");
+      const contents = document.querySelectorAll(".content");
+
+      var slideNav = function (manual) {
+        btns.forEach((btn) => {
+          btn.classList.remove("active");
+        });
+        slides.forEach((slide) => {
+          slide.classList.remove("active");
+        });
+        contents.forEach((content) => {
+          content.classList.remove("active");
+        });
+        btns[manual].classList.add("active");
+        slides[manual].classList.add("active");
+        contents[manual].classList.add("active");
+      };
+      btns.forEach((btn, i) => {
+        btn.addEventListener("click", () => {
+          slideNav(i);
+        });
+      });
+    </script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const navLinks = document.querySelectorAll(".nav-link");
+        navLinks.forEach(function (navLink) {
+          navLink.addEventListener("click", function () {
+            navLinks.forEach(function (link) {
+              link.classList.remove("active");
+            });
+            this.classList.add("active");
+          });
+        });
+      });
+    </script>
+
+    <script>
+      const apiUrl = "/api/elections";
+
+      document.addEventListener("DOMContentLoaded", async function () {
+        // Function to fetch election names from the backend
+        async function fetchElectionNames() {
+          try {
+            const response = await fetch(apiUrl);
+            const data = await response.json();
+            return data; // Assuming data is an array of objects with 'name' property
+          } catch (error) {
+            console.error("Error fetching election names:", error);
+            return [];
+          }
+        }
+
+        // Function to dynamically generate the dropdown options
+        async function generateDropdownOptions() {
+          const dropdownMenu = document.querySelector("#electionDropdownMenu");
+
+          // Clear existing options
+          dropdownMenu.innerHTML = "";
+
+          // Fetch election names from the backend
+          const elections = await fetchElectionNames();
+
+          // Loop through the elections array and generate options
+          elections.forEach((election) => {
+            const option = document.createElement("a");
+            option.classList.add("dropdown-item");
+            option.setAttribute("href", "#");
+            option.textContent = election.name;
+            dropdownMenu.appendChild(option);
+          });
+
+          // Add event listener to the dropdown menu items
+          dropdownMenu.addEventListener("click", function (event) {
+            if (event.target.classList.contains("dropdown-item")) {
+              const selectedValue = event.target.textContent.trim();
+              updateInput(selectedValue);
+            }
+          });
+        }
+
+        // Call the function to generate dropdown options when the page loads
+        await generateDropdownOptions();
+      });
+    </script>
+
+    <script>
+      function updateInput(electionName) {
+        document.getElementById("selected_election").value = electionName;
+      }
+    </script>
+  </body>
+</html>

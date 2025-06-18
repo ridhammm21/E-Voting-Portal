@@ -1,0 +1,592 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>E-Voting Portal</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+    
+    
+    <!-- <link href="img/favicon.png" rel="icon"> -->
+    
+  <!-- Bootstrap CSS File -->
+  <!-- <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
+   <!-- Libraries CSS Files -->
+   <!-- <link href="lib/nivo-slider/css/nivo-slider.css" rel="stylesheet"> -->
+   <!-- <link href="lib/owlcarousel/owl.carousel.css" rel="stylesheet"> -->
+   <!-- <link href="lib/owlcarousel/owl.transitions.css" rel="stylesheet"> -->
+   <!-- <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet"> -->
+   <!-- <link href="lib/animate/animate.min.css" rel="stylesheet"> -->
+   <!-- <link href="lib/venobox/venobox.css" rel="stylesheet"> -->
+   <!-- <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css"> -->
+
+
+    <!-- <link rel="stylesheet" href="/src/css/bootstrap.min.css"> -->
+    <link rel="popperjs" href="https://unpkg.com/@popperjs/core@2">
+
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> -->
+
+    <!-- <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    /> -->
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <style>
+      .custom-navbar-nav{
+        position: relative;
+        margin-right: 0;
+        margin-left: auto;
+      }
+      .custom-navbar-nav li a{
+        position: relative;
+        color: white;
+        font-size: 1rem;
+        font-weight: 500;
+        text-decoration: none;
+        margin-left: 30px;
+        transition: 0.3s ease;
+        cursor: pointer;
+      }
+      .custom-navbar-nav li a:before{
+        content: '';
+        position: absolute;
+        background: white;
+        width: 0;
+        height: 2.5px;
+        bottom: 0;
+        left: 0;
+        transition: 0.5s ease;
+      }
+
+      .custom-navbar-nav li a:hover:before{
+        width: 100%;
+      }
+
+      @media (max-width: 1110px) {
+        .navbar {
+          background-color: #343a40; /* Change background color to dark */
+        }
+      }
+      @media (min-width: 1200px) {
+        .navbar-toggler {
+          position: absolute;
+          right: 15px;
+        }
+      }
+
+    </style>
+
+  </head>
+  <body>
+    <!-- <header>
+      <a href="#" class="brand">E-Voting</a>
+      <div class="menu-btn"></div>
+      <div class="navigation">
+        <div class="navigation-items">
+          <a href="#homelink">Home</a>
+          <a href="#aboutlink">About</a>
+          <a href="/portal">Portal</a>
+          <a href="#contactlink">Contact us</a>
+          <a onclick="voterToggle()"> Voter Login</a>
+          <a onclick="candidateToggle()"> Candidate Login</a>
+
+          <a href="/admin">Admin Login</a>
+        </div>
+      </div>
+    </header> -->
+    <header>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <div class="menu-btn"></div>
+      <a class="navbar-brand mr-10" href="#" style="font-size: 24px; color: #fff;">E-voting</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav mr-auto custom-navbar-nav">
+              <li class="nav-item active mt-2">
+                  <a class="nav-link" href="#homelink" style="font-size: 18px; color: #fff;">Home</a>
+              </li>
+              <li class="nav-item mt-2">
+                  <a class="nav-link" href="#aboutlink" style="font-size: 18px; color: #fff;">About</a>
+              </li>
+              <li class="nav-item mt-2">
+                  <a class="nav-link" href="/portal" style="font-size: 18px; color: #fff;">Portal</a>
+              </li>
+              <li class="nav-item mt-2">
+                <a class="nav-link" href="#contactlink" style="font-size: 18px; color: #fff;">Contact us</a>
+              </li>
+              <!-- <li class="nav-item mt-2">
+                <a class="nav-link" onclick="voterToggle()" style="font-size: 18px; color: #fff;">Voter Login</a>
+              </li>
+              <li class="nav-item mt-2">
+                <a class="nav-link" onclick="candidateToggle()" style="font-size: 18px; color: #fff;">Candidate Login</a>
+              </li> -->
+              <li class="nav-item mt-2">
+                <a class="nav-link" onclick="adminToggle()" style="font-size: 18px; color: #fff;">Admin Login</a>
+              </li>
+            </ul>
+      </div>
+    </nav>
+    </header>
+
+    <section class="home" id="homelink">
+      <video
+        class="video-slide active"
+        src="img/1.mp4"
+        autoplay
+        muted
+        loop
+      ></video>
+      <video class="video-slide" src="img/2.mp4" autoplay muted loop></video>
+      <video class="video-slide" src="img/3.mp4" autoplay muted loop></video>
+      <video class="video-slide" src="img/4.mp4" autoplay muted loop></video>
+      <div class="content active">
+        <h1>E-Voting<br /><span>Portal</span></h1>
+        <p>
+          Electronic voting (e-voting) offers convenience, accessibility, and
+          faster results, reducing costs and errors while enhancing security and
+          transparency. It enables remote voting and can benefit expatriates,
+          but it must be implemented with a focus on security, privacy, and
+          legal compliance.
+        </p>
+        <a href="#">Read More</a>
+      </div>
+      <div class="content">
+        <h1>Transparency</h1>
+        <p>
+          Leveraging blockchain technology for the e-voting project enhances
+          transparency. Every vote and transaction is recorded in a
+          tamper-resistant, publicly accessible ledger. This ensures that the
+          voting process is transparent and auditable, strengthening trust in
+          the electoral system.
+        </p>
+        <a href="#">Read More</a>
+      </div>
+      <div class="content">
+        <h1>Security</h1>
+        <p>
+          Security is paramount in e-voting systems. Robust measures are vital
+          to prevent hacking, tampering, and identity theft. End-to-end
+          encryption, blockchain technology, and secure authentication protocols
+          are key components to ensure the integrity and privacy of the voting
+          process.
+        </p>
+        <a href="#">Read More</a>
+      </div>
+      <div class="content">
+        <h1>Environmental<br /><span>Sustainability</span></h1>
+        <p>
+          E-voting contributes to sustainability by reducing paper usage,
+          minimizing carbon footprints, and encouraging energy-efficient
+          practices. Remote voting and digital records further lessen
+          environmental impact while promoting green technology adoption.
+        </p>
+        <a href="#">Read More</a>
+      </div>
+      <div class="media-icons">
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+      </div>
+      <div class="slider-navigation">
+        <div class="nav-btn active"></div>
+        <div class="nav-btn"></div>
+        <div class="nav-btn"></div>
+        <div class="nav-btn"></div>
+      </div>
+    </section>
+
+    <section class="about" id="aboutlink">
+      <!-- <h1>About us</h1>
+      <p>
+        Welcome to our college's E-Voting Portal, where we merge technology and
+        democracy to empower our student body and foster a culture of active
+        participation. Our E-Voting Portal is designed to enhance the democratic
+        experience within our college community, making it easier for students
+        to engage in the decision-making process, no matter where they are.
+      </p> -->
+
+      
+  <!-- Start About area -->
+  <div id="about" class="about-area area-padding">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <div class="section-headline text-center">
+            <h2>About E-Voting</h2>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <!-- single-well start-->
+        <div class="col-md-6 col-sm-6 col-xs-12">
+          <div class="well-left">
+            <div class="single-well">
+              <a href="#">
+								  <img src="img/voting.jpg" alt="" width="550px">
+								</a>
+            </div>
+          </div>
+        </div>
+        <!-- single-well end-->
+        <div class="col-md-6 col-sm-6 col-xs-12">
+          <div class="well-middle">
+            <div class="single-well">
+              <a href="/portal">
+                <h4 class="sec-head">Portal</h4>
+              </a>
+              <p>
+                Welcome to our college's E-Voting Portal, where we merge technology and
+                democracy to empower our student body and foster a culture of active
+                participation. Our E-Voting Portal is designed to enhance the democratic
+                experience within our college community, making it easier for students
+                to engage in the decision-making process, no matter where they are.
+              </p>
+              <ul>
+                <li>
+                  <i class="fa fa-check" aria-hidden="true"></i> Transparency
+                </li>
+                <li>
+                  <i class="fa fa-check"></i> Confidentiality
+                </li>
+                <li>
+                  <i class="fa fa-check"></i> Security
+                </li>
+                <li>
+                  <i class="fa fa-check"></i> Environment Sustainability
+                </li>
+                <!-- <li>
+                  <i class="fa fa-check"></i> Make Quality Products
+                </li> -->
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- End col-->
+      </div>
+    </div>
+  </div>
+  <!-- End About area -->
+
+
+    </section>
+
+    <section class="contact" id="contactlink">
+      <!-- <h1>Contact us</h1> -->
+      <!-- Start contact Area -->
+  <div id="contact" class="contact-area">
+    <div class="contact-inner area-padding">
+      <div class="contact-overly"></div>
+      <div class="container ">
+        <div class="row">
+          <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="section-headline text-center">
+              <h2>Contact us</h2>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <!-- Start contact icon column -->
+          <div class="col-md-4 col-sm-4 col-xs-12">
+            <div class="contact-icon text-center">
+              <div class="single-icon">
+                <i class="fa fa-mobile"></i>
+                <p>
+                  Call: +91 5558948855<br>
+                  <span>Monday-Friday (9am-5pm)</span>
+                </p>
+              </div>
+            </div>
+          </div>
+          <!-- Start contact icon column -->
+          <div class="col-md-4 col-sm-4 col-xs-12">
+            <div class="contact-icon text-center">
+              <div class="single-icon">
+                <i class="fa fa-envelope-o"></i>
+                <p>
+                  Email: evoting@example.com<br>
+                  <span>Web: www.evoting.com</span>
+                </p>
+              </div>
+            </div>
+          </div>
+          <!-- Start contact icon column -->
+          <div class="col-md-4 col-sm-4 col-xs-12">
+            <div class="contact-icon text-center">
+              <div class="single-icon">
+                <i class="fa fa-map-marker"></i>
+                <p>
+                  Location: Versova, Andheri<br>
+                  <span>Mumbai 400053, India</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+
+          <!-- Start Google Map -->
+          <div class="col-md-6 col-sm-6 col-xs-12">
+            <!-- Start Map -->
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3769.689051308273!2d72.8211393752515!3d19.12129248209263!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c9e13ef12003%3A0x5767a74a751ccaf9!2sRajiv%20Gandhi%20Institute%20of%20Technology!5e0!3m2!1sen!2sin!4v1713970859651!5m2!1sen!2sin" width="100%" height="380" frameborder="0" style="border:0" allowfullscreen></iframe>
+            <!-- End Map -->
+          </div>
+          <!-- End Google Map -->
+
+          <!-- Start  contact -->
+          <div class="col-md-6 col-sm-6 col-xs-12">
+            <div class="form contact-form">
+              <div id="sendmessage">Your message has been sent. Thank you!</div>
+              <div id="errormessage"></div>
+              <form action="" method="post" role="form" class="contactForm">
+                <div class="form-group">
+                  <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                  <div class="validation"></div>
+                </div>
+                <div class="form-group">
+                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
+                  <div class="validation"></div>
+                </div>
+                <div class="form-group">
+                  <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
+                  <div class="validation"></div>
+                </div>
+                <div class="form-group">
+                  <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
+                  <div class="validation"></div>
+                </div>
+                <div class="text-center"><button type="submit">Send Message</button></div>
+              </form>
+            </div>
+          </div>
+          <!-- End Left contact -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Contact Area -->
+    </section>
+
+    <section class="voter_candidate">
+      <div class="main">
+        <div class="admin_login">
+          <div class="adminnn">
+              <form action="/adminlogin" method="post">
+                <div class="admin-login">Admin Login</div>
+                <label for="username">Username</label>
+                <input type="text", name="user_name", placeholder="admin">
+    
+                <label for="password">Password</label>
+                <input type="password" name="password", placeholder="admin">
+
+                <input type="submit" value="Submit" id="button">
+              </form>
+          </div>
+        </div>
+        <div class="voter_login">
+          <div class="voter">
+            <form action="/voterlogin" method="post">
+              <div class="voter-login">Voter login</div>
+
+              <label for="votername">Voter name</label>
+              <input
+                type="text"
+                name="name"
+                placeholder="Voter name"
+                id="votername"
+                class="votername"
+                required
+              />
+
+              <label for="Year1">Year of study</label>
+              <input
+                type="text"
+                name="year1"
+                placeholder="e.g. 3rd year"
+                id="Year1"
+                class="Year1"
+                required
+              />
+
+              <label for="class">Div</label>
+              <input type="text" placeholder="Div" id="class" class="class" name="div" />
+
+              <label for="Roll">Roll no</label>
+              <input
+                type="number"
+                name="Rollno"
+                placeholder="Roll no"
+                class="Roll"
+                id="Roll"
+                required
+              />
+
+              <label for="gr">G R number</label>
+              <input
+                type="number"
+                name="GRno"
+                placeholder="G R no."
+                id="gr"
+                class="gr"
+                required
+              />
+
+              <input type="submit" id="button" value="Submit" />
+            </form>
+          </div>
+        </div>
+        <div class="candidate_login">
+          <form action="/candidatelogin" method="post">
+            <div class="candidate-login">Candidate login</div>
+            <label for="candi_name">Candidate name</label>
+            <input
+              type="text"
+              placeholder="Candidate name"
+              class="candi_name"
+              id="candi_name"
+              required
+            />
+
+            <label for="Year2">Year of Study</label>
+            <input
+              type="text"
+              placeholder="e.g. 3rd year"
+              class="Year2"
+              id="Year2"
+              required
+            />
+
+            <label for="class2">Div</label>
+            <input
+              type="text"
+              placeholder="Div"
+              class="class2"
+              id="class2"
+              required
+            />
+
+            <label for="Roll2">Roll no</label>
+            <input
+              type="number"
+              placeholder="Roll no"
+              class="Roll2"
+              id="Roll2"
+              required
+            />
+
+            <label for="gr2">G R number</label>
+            <input
+              type="number"
+              placeholder="G R no."
+              id="gr2"
+              class="gr2"
+              required
+            />
+
+            <label for="attendance">Attendance (>60)</label>
+            <input
+              type="number"
+              placeholder="e.g. 60"
+              class="attendance"
+              id="attendance"
+              required
+            />
+
+            <div id="eligib">
+              <label for="eligible" id="eligibl">Your acheivements</label>
+              <textarea
+                name="eligible"
+                id="eligible"
+                cols="30"
+                rows="10"
+                placeholder="Why do you think you are eligible"
+              ></textarea>
+            </div>
+
+            <div class="submit">
+              <input type="submit" id="button" value="Submit" />
+              <p>Your formed will be reviewed within 2 days</p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+    <script>
+      var voterlogin = document.querySelector(".voter_login");
+      var candidatelogin = document.querySelector(".candidate_login");
+      var adminlogin = document.querySelector(".admin_login");
+
+      function voterToggle() {
+        voterlogin.classList.toggle("voter_login_height");
+        candidatelogin.classList.remove("candidate_login_height");
+        adminlogin.classList.remove("admin_login_height");
+      }
+
+      function candidateToggle() {
+        candidatelogin.classList.toggle("candidate_login_height");
+        voterlogin.classList.remove("voter_login_height");
+        adminlogin.classList.remove("admin_login_height");
+      }
+
+      function adminToggle() {
+        adminlogin.classList.toggle("admin_login_height");
+        candidatelogin.classList.remove("candidate_login_height");
+        voterlogin.classList.remove("voter_login_height");
+      }
+    </script>
+
+    <script type="text/javascript">
+      const menuBtn = document.querySelector(".menu-btn");
+      const navigation = document.querySelector(".custom-navbar-nav");
+      menuBtn.addEventListener("click", () => {
+        menuBtn.classList.toggle("active");
+        navigation.classList.toggle("active");
+      });
+
+      const btns = document.querySelectorAll(".nav-btn");
+      const slides = document.querySelectorAll(".video-slide");
+      const contents = document.querySelectorAll(".content");
+
+      var slideNav = function (manual) {
+        btns.forEach((btn) => {
+          btn.classList.remove("active");
+        });
+        slides.forEach((slide) => {
+          slide.classList.remove("active");
+        });
+        contents.forEach((content) => {
+          content.classList.remove("active");
+        });
+        btns[manual].classList.add("active");
+        slides[manual].classList.add("active");
+        contents[manual].classList.add("active");
+      };
+      btns.forEach((btn, i) => {
+        btn.addEventListener("click", () => {
+          slideNav(i);
+        });
+      });
+    </script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+      const navLinks = document.querySelectorAll('.nav-link');
+      navLinks.forEach(function(navLink) {
+          navLink.addEventListener('click', function() {
+              navLinks.forEach(function(link) {
+                  link.classList.remove('active');
+              });
+              this.classList.add('active');
+          });
+      });
+  });
+</script>
+    <!-- <script src="/src/js/bootstrap.min.js"></script>/ -->
+  </body>
+</html>

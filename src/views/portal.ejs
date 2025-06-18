@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>E-Voting Portal</title>
+    <!-- Swiper CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/swiper@10.3.1/swiper-bundle.min.css"
+      rel="stylesheet"
+    />
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/slider.css" />
+    <!-- <link rel="stylesheet" href="main.css"> -->
+  </head>
+  <body>
+    <header>
+      <a href="/index.html" class="brand">E-Voting</a>
+      <div class="menu-btn"></div>
+      <div class="navigation">
+        <div class="navigation-items">
+          <a href="/indexx">Home</a>
+          <a href="/indexx#aboutlink">About</a>
+          <a href="#">Portal</a>
+          <a href="#">Gallery</a>
+          <a href="/indexx#contactlink">Contact us</a>
+        </div>
+      </div>
+    </header>
+
+    <section class="can">
+      <h1>ELECTIONS</h1>
+      <div class="slide-container swiper">
+        <div class="slide-content">
+          <div class="card-wrapper swiper-wrapper">
+          </div>
+        </div>
+
+        <div class="swiper-button-next swiper-navBtn"></div>
+        <div class="swiper-button-prev swiper-navBtn"></div>
+        <div class="swiper-pagination"></div>
+      </div>
+    </section>
+
+    <script type="text/javascript">
+      const menuBtn = document.querySelector(".menu-btn");
+      const navigation = document.querySelector(".navigation");
+      menuBtn.addEventListener("click", () => {
+        menuBtn.classList.toggle("active");
+        navigation.classList.toggle("active");
+      });
+
+      const btns = document.querySelectorAll(".nav-btn");
+      const slides = document.querySelectorAll(".video-slide");
+      const contents = document.querySelectorAll(".content");
+
+      var slideNav = function (manual) {
+        btns.forEach((btn) => {
+          btn.classList.remove("active");
+        });
+        slides.forEach((slide) => {
+          slide.classList.remove("active");
+        });
+        contents.forEach((content) => {
+          content.classList.remove("active");
+        });
+        btns[manual].classList.add("active");
+        slides[manual].classList.add("active");
+        contents[manual].classList.add("active");
+      };
+      btns.forEach((btn, i) => {
+        btn.addEventListener("click", () => {
+          slideNav(i);
+        });
+      });
+    </script>
+
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10.3.1/swiper-bundle.min.js"></script>
+
+    <!-- JavaScript -->
+    <script src="/slider.js"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        fetch("/api/elections?timestamp=" + Date.now())
+          .then((response) => response.json())
+          .then((data) => {
+            const cardWrapper = document.querySelector(".card-wrapper");
+            // Clear existing cards
+            cardWrapper.innerHTML = "";
+            // Iterate over fetched election data and create cards
+            data.forEach((election) => {
+              const card = document.createElement("div");
+              card.className = "card swiper-slide";
+              card.innerHTML = `
+                        <div class="card swiper-slide">
+                            <div class="image-content">
+                                <span class="overlay"></span>
+
+                                <div class="card-image">
+                                    <img src="/img/vote.webp" alt="" class="card-img">
+                                </div>
+                            </div>
+
+                            <div class="card-content">
+                                <h2 class="name">${election.name}</h2>
+                                <p class="description">${election.description}</p>
+
+                                <button class="button"><a href="/portal1">Participate</a></button>
+                            </div>
+                        </div>
+                    `;
+              cardWrapper.appendChild(card);
+            });
+            // Initialize or update Swiper instance
+            if (window.mySwiper) {
+              window.mySwiper.update();
+            } else {
+              window.mySwiper = new Swiper(".slide-container", {
+                slidesPerView: 3,
+                spaceBetween: 25,
+                loop: true,
+                // Add other options as needed
+              });
+            }
+          })
+          .catch((error) =>
+            console.error("Error fetching election data:", error)
+          );
+      });
+    </script>
+  </body>
+</html>
