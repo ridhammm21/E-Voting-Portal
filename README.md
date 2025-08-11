@@ -39,3 +39,14 @@ A secure and transparent **E-Voting Portal** designed using **Node.js**, **Mongo
    ```bash
    https://github.com/ridhammm21/E-Voting-Portal.git
    cd E-Voting-Portal
+
+## 📸 Screenshots
+
+| Home Page | Portal Page |
+|-----------|-------------|
+| ![Home Page](Screenshots/home_page.png) | ![Portal Page](Screenshots/portal_page.png) |
+
+| Voting Page | Admin Page |
+|-------------|------------|
+| ![Voting Page](Screenshots/voting_page.png) | ![Admin Page](Screenshots/admin_page.png) |
+
